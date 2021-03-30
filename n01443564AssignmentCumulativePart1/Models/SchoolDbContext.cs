@@ -18,7 +18,7 @@ namespace n01443564AssignmentCumulativePart1.Models
 
         //Create a connection string that describes what server,username,database,port,password, and 
         //convert zero datetime are. 
-        protected static string connectionString
+        protected static string ConnectionString
         {
             get
             {
@@ -36,10 +36,14 @@ namespace n01443564AssignmentCumulativePart1.Models
         /// <summary>
         /// Thie method will returns a connection to the schooldb database.
         /// </summary>
+        /// <example>
+        /// private SchoolDbContext School = new SchoolDbContext{};
+        /// MySqlConnection conn = School.AccessDataBase()
+        /// </example>
         /// <returns>A Sqlconnect object</returns>
         public MySqlConnection AccessDatabase()
         {
-            return new MySqlConnection(connectionString);
+            return new MySqlConnection(ConnectionString);
         }
     }
 }

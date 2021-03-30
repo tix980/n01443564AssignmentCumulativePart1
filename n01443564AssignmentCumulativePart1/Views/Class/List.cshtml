@@ -1,0 +1,11 @@
+﻿@model IEnumerable<n01443564AssignmentCumulativePart1.Models.Class>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var Indivclass in Model){
+    <a href="/Class/Show/@Indivclass.ClassId"><div>@Indivclass.ClassCode : @Indivclass.ClassName </div></a>
+}
+
+

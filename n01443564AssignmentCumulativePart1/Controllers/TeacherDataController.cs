@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using n01443564AssignmentCumulativePart1.Models;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace n01443564AssignmentCumulativePart1.Controllers
 {
@@ -24,9 +25,9 @@ namespace n01443564AssignmentCumulativePart1.Controllers
         /// </example>
         /// <returns>A list of teacher objects</returns>
         [HttpGet]
-        [Route("api/TeacherDate/ListTeachers")]
+        [Route("api/TeacherDate/ListTeachers/{SearchKey}")]
         //GET api/TeacherData/ListTeachers
-        public List<Teacher> ListTeachers()
+        public List<Teacher> ListTeachers(string SearchKey)
         {
             //Create a empty list for teacher objects
             List<Teacher> Teachers = new List<Teacher> { };
@@ -41,7 +42,12 @@ namespace n01443564AssignmentCumulativePart1.Controllers
             MySqlCommand cmd = conn.CreateCommand();
 
             // Write a sql query
-            cmd.CommandText = "SELECT * FROM `teachers` JOIN classes ON teachers.teacherid = classes.teacherid";
+            cmd.CommandText = "SELECT * FROM `teachers` JOIN classes ON teachers.teacherid = classes.teacherid WHERE teacherfname like @SearchKey OR teacherlname like @SearchKey ";
+            cmd.Parameters.AddWithValue("@SearchKey", "%" + SearchKey + "%");
+            cmd.Prepare();
+
+            Debug.WriteLine("The input value is ");
+            Debug.WriteLine(SearchKey);
 
             //Gather the result set after executing the query
             MySqlDataReader ResultSet = cmd.ExecuteReader();

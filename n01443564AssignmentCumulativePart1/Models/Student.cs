@@ -11,6 +11,6 @@ namespace n01443564AssignmentCumulativePart1.Models
         public string StudentFname;
         public string StudentLname;
         public string StudentNumber;
-        public string EnrolDate;
+        public DateTime EnrolDate;
     }
 }

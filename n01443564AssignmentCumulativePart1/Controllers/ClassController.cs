@@ -10,12 +10,13 @@ namespace n01443564AssignmentCumulativePart1.Controllers
     public class ClassController : Controller
     {
         // GET: Class/List
-        public ActionResult List()
+        // Or GET: Class/List?Searchkey= {SearchKey}
+        public ActionResult List(string Searchkey = null)
         {
             //Instantiating the ClassDataController
             ClassDataController Controller = new ClassDataController();
             //Access ListClasses() method
-            List<Class> Class = Controller.ListClasses();
+            List<Class> Class = Controller.ListClasses(Searchkey);
             return View(Class);
         }
 

@@ -18,16 +18,19 @@ namespace n01443564AssignmentCumulativePart1.Controllers
 
         ///Objective:Create a method that allows us to access the teachers table of the datbase
         /// <summary>
-        /// This method will return a list of teacher objects
+        /// This method will return a list of teacher objects.
+        /// This method will also allow us to reduce numbers of teachers on the list by entering key searchwords
+        /// of teachers' first name or last name.
         /// </summary>
+        /// <param name="id">The searchwords that can be found in teachers' first name or last name. </param>
         /// <example>
-        /// GET api/TeacherData/ListTeachers
+        /// GET api/TeacherData/ListTeachers/{SearchKey?}
         /// </example>
         /// <returns>A list of teacher objects</returns>
         [HttpGet]
-        [Route("api/TeacherDate/ListTeachers/{SearchKey}")]
-        //GET api/TeacherData/ListTeachers
-        public List<Teacher> ListTeachers(string SearchKey)
+        [Route("api/TeacherDate/ListTeachers/{SearchKey?}")]
+        //GET api/TeacherData/ListTeachers/{SearchKey?}
+        public List<Teacher> ListTeachers(string SearchKey = null)
         {
             //Create a empty list for teacher objects
             List<Teacher> Teachers = new List<Teacher> { };
@@ -46,9 +49,6 @@ namespace n01443564AssignmentCumulativePart1.Controllers
             cmd.Parameters.AddWithValue("@SearchKey", "%" + SearchKey + "%");
             cmd.Prepare();
 
-            Debug.WriteLine("The input value is ");
-            Debug.WriteLine(SearchKey);
-
             //Gather the result set after executing the query
             MySqlDataReader ResultSet = cmd.ExecuteReader();
 
@@ -61,7 +61,7 @@ namespace n01443564AssignmentCumulativePart1.Controllers
                 NewTeacher.TeacherFname = ResultSet["teacherfname"].ToString();
                 NewTeacher.TeacherLname = ResultSet["teacherlname"].ToString();
                 NewTeacher.EmployeeNumber = ResultSet["employeenumber"].ToString();
-                NewTeacher.HireDate = ResultSet["hiredate"].ToString();
+                NewTeacher.HireDate = Convert.ToDateTime(ResultSet["hiredate"].ToString());
                 NewTeacher.Salary = (decimal)ResultSet["salary"];
                 NewTeacher.ClassCode = ResultSet["classcode"].ToString();
                 NewTeacher.ClassName = ResultSet["classname"].ToString();
@@ -81,6 +81,7 @@ namespace n01443564AssignmentCumulativePart1.Controllers
         /// <summary>
         /// This method will return a specific teacher's information  based on the input interger value of the teacherid
         /// </summary>
+        /// <param name="id">the teacher ID in the database</param>
         /// <example>
         /// GET api/TeacherData/FindTeacher/{id}
         /// </example>
@@ -115,7 +116,7 @@ namespace n01443564AssignmentCumulativePart1.Controllers
                 NewTeacher.TeacherFname = ResultSet["teacherfname"].ToString();
                 NewTeacher.TeacherLname = ResultSet["teacherlname"].ToString();
                 NewTeacher.EmployeeNumber = ResultSet["employeenumber"].ToString();
-                NewTeacher.HireDate = ResultSet["hiredate"].ToString();
+                NewTeacher.HireDate = Convert.ToDateTime(ResultSet["hiredate"].ToString());
                 NewTeacher.Salary = (decimal)ResultSet["salary"];
                 NewTeacher.ClassCode = ResultSet["classcode"].ToString();
                 NewTeacher.ClassName = ResultSet["classname"].ToString();

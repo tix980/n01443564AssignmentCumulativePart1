@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using n01443564AssignmentCumulativePart1.Models;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 
 namespace n01443564AssignmentCumulativePart1.Controllers
 {
@@ -18,14 +19,16 @@ namespace n01443564AssignmentCumulativePart1.Controllers
         ///Objective:Create a method that allows us to access the teachers table of the datbase
         /// <summary>
         /// This method will return a list of class objects
+        /// This method will also allow us to reduce numbers of classes on the list by entering key searchwords of classes' names
         /// </summary>
+        /// <param name="id">The searchwords that can be found in classes' names. </param>
         /// <example>
-        /// GET api/ClassData/ListClasses
+        /// GET api/ClassData/ListClasses/{SearchKey?}
         /// </example>
         /// <returns>A list of class objects</returns>
         [HttpGet]
-        [Route("api/ClassData/ListClasses")]
-        public List<Class> ListClasses()
+        [Route("api/ClassData/ListClasses/{SearchKey?}")]
+        public List<Class> ListClasses(string SearchKey = null)
         {
             //Create a empty list for class objects
             List<Class> Classes = new List<Class>{ };
@@ -39,7 +42,9 @@ namespace n01443564AssignmentCumulativePart1.Controllers
             MySqlCommand cmd = conn.CreateCommand();
 
             // Write a sql query
-            cmd.CommandText = "SELECT * FROM `classes` JOIN teachers ON classes.teacherid = teachers.teacherid";
+            cmd.CommandText = "SELECT * FROM `classes` JOIN teachers ON classes.teacherid = teachers.teacherid WHERE classname like @SearchKey";
+            cmd.Parameters.AddWithValue("@SearchKey", "%" + SearchKey + "%");
+            cmd.Prepare();
 
             //Gather the result set after executing the query
             MySqlDataReader ResultSet = cmd.ExecuteReader();
@@ -54,8 +59,8 @@ namespace n01443564AssignmentCumulativePart1.Controllers
                 NewClass.TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
                 NewClass.TeacherFname = ResultSet["teacherfname"].ToString();
                 NewClass.TeacherLname = ResultSet["teacherlname"].ToString();
-                NewClass.StartDate = ResultSet["startdate"].ToString();
-                NewClass.FinishDate = ResultSet["finishdate"].ToString();
+                NewClass.StartDate = Convert.ToDateTime(ResultSet["startdate"].ToString());
+                NewClass.FinishDate = Convert.ToDateTime(ResultSet["finishdate"].ToString());
                 NewClass.ClassName = ResultSet["classname"].ToString();
 
                 //Add the class object to the empty list
@@ -73,6 +78,7 @@ namespace n01443564AssignmentCumulativePart1.Controllers
         /// <summary>
         /// This method will return a specific class's information  based on the input interger value of theteacherid
         /// </summary>
+        /// <param name="id">the class ID in the database</param>
         /// <example>
         /// GET api/ClasstData/FindClass/{id}
         /// </example>
@@ -108,8 +114,8 @@ namespace n01443564AssignmentCumulativePart1.Controllers
                 NewClass.TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
                 NewClass.TeacherFname = ResultSet["teacherfname"].ToString();
                 NewClass.TeacherLname = ResultSet["teacherlname"].ToString();
-                NewClass.StartDate = ResultSet["startdate"].ToString();
-                NewClass.FinishDate = ResultSet["finishdate"].ToString();
+                NewClass.StartDate = Convert.ToDateTime(ResultSet["startdate"].ToString());
+                NewClass.FinishDate = Convert.ToDateTime(ResultSet["finishdate"].ToString());
                 NewClass.ClassName = ResultSet["classname"].ToString();
             }
 

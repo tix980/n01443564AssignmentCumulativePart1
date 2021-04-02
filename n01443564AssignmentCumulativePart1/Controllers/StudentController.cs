@@ -10,12 +10,13 @@ namespace n01443564AssignmentCumulativePart1.Controllers
     public class StudentController : Controller
     {
         // GET: Student/List
-        public ActionResult List()
+        // Or GET: Student/List?Searchkey= {SearchKey}
+        public ActionResult List(string SearchKey = null)
         {
             //Instantiating the StudentDataController
             StudentDataController Controller = new StudentDataController();
             //Access ListStudents() method
-            List<Student> Students = Controller.ListStudents();
+            List<Student> Students = Controller.ListStudents(SearchKey);
             return View(Students);
         }
 

@@ -10,6 +10,7 @@ namespace n01443564AssignmentCumulativePart1.Controllers
     public class TeacherController : Controller
     {
         // GET: Teacher/List
+        // Or GET: Teacher/List?Searchkey= {SearchKey}
         public ActionResult List(string SearchKey = null)
         {
             //Instantiating the TeacherDataController

@@ -12,8 +12,8 @@ namespace n01443564AssignmentCumulativePart1.Models
         public int TeacherId;
         public string TeacherFname;
         public string TeacherLname;
-        public string StartDate;
-        public string FinishDate;
+        public DateTime StartDate;
+        public DateTime FinishDate;
         public string ClassName;
     }
 }

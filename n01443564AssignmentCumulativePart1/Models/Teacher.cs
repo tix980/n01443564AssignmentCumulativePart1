@@ -11,7 +11,7 @@ namespace n01443564AssignmentCumulativePart1.Models
         public string TeacherFname;
         public string TeacherLname;
         public string EmployeeNumber;
-        public string HireDate;
+        public DateTime HireDate;
         public decimal Salary;
         public string ClassCode;
         public string ClassName;

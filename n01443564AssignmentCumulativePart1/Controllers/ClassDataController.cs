@@ -59,10 +59,10 @@ namespace n01443564AssignmentCumulativePart1.Controllers
                 NewClass.TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
                 NewClass.TeacherFname = ResultSet["teacherfname"].ToString();
                 NewClass.TeacherLname = ResultSet["teacherlname"].ToString();
-                NewClass.StartDate = Convert.ToDateTime(ResultSet["startdate"].ToString());
-                NewClass.FinishDate = Convert.ToDateTime(ResultSet["finishdate"].ToString());
+                NewClass.StartDate = Convert.ToDateTime(ResultSet["startdate"]);
+                NewClass.FinishDate = Convert.ToDateTime(ResultSet["finishdate"]);
                 NewClass.ClassName = ResultSet["classname"].ToString();
-
+                 
                 //Add the class object to the empty list
                 Classes.Add(NewClass);
             }
@@ -114,8 +114,8 @@ namespace n01443564AssignmentCumulativePart1.Controllers
                 NewClass.TeacherId = Convert.ToInt32(ResultSet["teacherid"]);
                 NewClass.TeacherFname = ResultSet["teacherfname"].ToString();
                 NewClass.TeacherLname = ResultSet["teacherlname"].ToString();
-                NewClass.StartDate = Convert.ToDateTime(ResultSet["startdate"].ToString());
-                NewClass.FinishDate = Convert.ToDateTime(ResultSet["finishdate"].ToString());
+                NewClass.StartDate = Convert.ToDateTime(ResultSet["startdate"]);
+                NewClass.FinishDate = Convert.ToDateTime(ResultSet["finishdate"]);
                 NewClass.ClassName = ResultSet["classname"].ToString();
             }
 

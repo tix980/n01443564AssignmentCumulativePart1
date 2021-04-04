@@ -3,7 +3,9 @@
     ViewBag.Title = "Show";
 }
 
-<h2>Student's information</h2>
-@Model.StudentFname,@Model.StudentLname
-<div>Student Number:@Model.StudentNumber</div>
-<div>Student enroll date: @Model.EnrolDate</div>
+<div class="main-content">
+    <h2>Student's information</h2>
+    <div style="font-weight:bold;">@Model.StudentFname @Model.StudentLname</div>
+    <div>Student Number:@Model.StudentNumber</div>
+    <div>Student enroll date: @Model.EnrolDate.ToString("dd-MMM-yyyy")</div>
+</div>

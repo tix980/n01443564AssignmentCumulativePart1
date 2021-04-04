@@ -3,9 +3,10 @@
     ViewBag.Title = "Course Description";
 }
 
-<h2>Course Description</h2>
-<div>@Model.ClassCode : @Model.ClassName</div>
-<div>Teacher name : @Model.TeacherFname @Model.TeacherLname</div>
-<div>Course StartDate : @Model.StartDate</div>
-<div>Course EndDate :@Model.FinishDate</div>
-
+<div class="main-content">
+    <h2>Course Description</h2>
+    <div style="font-weight:bold; text-transform:uppercase">@Model.ClassCode : @Model.ClassName</div>
+    <div>Teacher name : @Model.TeacherFname @Model.TeacherLname</div>
+    <div>Course StartDate : @Model.StartDate.ToString("dd-MMM-yyyy")</div>
+    <div>Course EndDate :@Model.FinishDate</div>
+</div>

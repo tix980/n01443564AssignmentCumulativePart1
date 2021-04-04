@@ -61,7 +61,7 @@ namespace n01443564AssignmentCumulativePart1.Controllers
                 NewStudent.StudentFname = ResultSet["studentfname"].ToString();
                 NewStudent.StudentLname = ResultSet["studentlname"].ToString();
                 NewStudent.StudentNumber = ResultSet["studentnumber"].ToString();
-                NewStudent.EnrolDate = Convert.ToDateTime(ResultSet["enroldate"].ToString());
+                NewStudent.EnrolDate = Convert.ToDateTime(ResultSet["enroldate"]);
 
                 //Add the student object to the empty list
                 Students.Add(NewStudent);
@@ -112,7 +112,7 @@ namespace n01443564AssignmentCumulativePart1.Controllers
                 NewStudent.StudentFname = ResultSet["studentfname"].ToString();
                 NewStudent.StudentLname = ResultSet["studentlname"].ToString();
                 NewStudent.StudentNumber = ResultSet["studentnumber"].ToString();
-                NewStudent.EnrolDate = Convert.ToDateTime(ResultSet["enroldate"].ToString());
+                NewStudent.EnrolDate = Convert.ToDateTime(ResultSet["enroldate"]);
             }
 
             //close the connection

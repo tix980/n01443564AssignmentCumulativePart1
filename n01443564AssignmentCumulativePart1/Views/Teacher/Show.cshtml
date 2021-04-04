@@ -3,10 +3,11 @@
     ViewBag.Title = "Show";
 }
 
-<h2>Teacher's information</h2>
-
-@Model.TeacherFname @Model.TeacherLname
-<div>Employee Number:@Model.EmployeeNumber</div>
-<div>HireDate:@Model.HireDate</div>
-<div>Salary:$@Model.Salary</div>
-<div>Course: @Model.ClassCode @Model.ClassName</div>
+<div class="main-content">
+    <h2>Teacher's information</h2>
+    <div style="font-weight:bold;">@Model.TeacherFname @Model.TeacherLname</div>
+    <div>Employee Number:@Model.EmployeeNumber</div>
+    <div style="text-transform: uppercase;">Course @Model.ClassCode: @Model.ClassName</div>
+    <div>HireDate:@Model.HireDate.ToString("dd-MMM-yyyy")</div>
+    <div>Salary:$@Model.Salary</div>
+</div>

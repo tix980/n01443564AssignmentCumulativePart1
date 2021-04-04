@@ -45,6 +45,10 @@ textarea {
     color:black;
 }
 
+.navbar-header{
+    color:black;
+}
+
 #containerlist, #containershow {
     width: 80%;
     margin: 0 auto;
@@ -57,4 +61,9 @@ textarea {
 
 .navbar {
     background: #EEF0F2;
+}
+
+.main-content{
+    margin:2em 0 17em 27em;
+    line-height:2em;
 }
